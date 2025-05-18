@@ -7,15 +7,10 @@ public class Vertex {
         this.label = label;
     }
 
-    public String getLabel() {
-        return label;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Vertex)) return false;
-        Vertex vertex = (Vertex) o;
+        if (!(o instanceof Vertex vertex)) return false;
         return label.equals(vertex.label);
     }
 

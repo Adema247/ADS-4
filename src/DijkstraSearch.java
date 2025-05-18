@@ -3,7 +3,6 @@ import java.util.*;
 public class DijkstraSearch implements Search {
     private final Map<Vertex, Integer> distTo = new HashMap<>();
     private final Map<Vertex, Vertex> edgeTo = new HashMap<>();
-    private final PriorityQueue<Vertex> pq;
     private final Vertex source;
 
     public DijkstraSearch(WeightedGraph graph, Vertex source) {
@@ -14,7 +13,7 @@ public class DijkstraSearch implements Search {
         }
         distTo.put(source, 0);
 
-        pq = new PriorityQueue<>(Comparator.comparingInt(distTo::get));
+        PriorityQueue<Vertex> pq = new PriorityQueue<>(Comparator.comparingInt(distTo::get));
         pq.add(source);
 
         while (!pq.isEmpty()) {
@@ -36,12 +35,12 @@ public class DijkstraSearch implements Search {
 
     @Override
     public boolean hasPathTo(Vertex v) {
-        return distTo.get(v) < Integer.MAX_VALUE;
+        return distTo.get(v) >= Integer.MAX_VALUE;
     }
 
     @Override
     public List<Vertex> pathTo(Vertex v) {
-        if (!hasPathTo(v)) return null;
+        if (hasPathTo(v)) return null;
         List<Vertex> path = new ArrayList<>();
         for (Vertex x = v; x != null && !x.equals(source); x = edgeTo.get(x)) {
             path.add(x);

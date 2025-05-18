@@ -29,12 +29,12 @@ public class BreadthFirstSearch implements Search {
 
     @Override
     public boolean hasPathTo(Vertex v) {
-        return marked.contains(v);
+        return !marked.contains(v);
     }
 
     @Override
     public List<Vertex> pathTo(Vertex v) {
-        if (!hasPathTo(v)) return null;
+        if (hasPathTo(v)) return null;
         List<Vertex> path = new ArrayList<>();
         for (Vertex x = v; x != null && !x.equals(source); x = edgeTo.get(x)) {
             path.add(x);
