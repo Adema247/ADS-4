@@ -4,3 +4,4 @@ public interface Search {
     boolean hasPathTo(Vertex v);
     List<Vertex> pathTo(Vertex v);
 }
+//-
