@@ -22,4 +22,3 @@ public class WeightedGraph {
         return adjVertices.getOrDefault(vertex, new HashMap<>());
     }
 }
-//
